@@ -1,0 +1,36 @@
+body{
+    background-color: #2e6c2e;
+    background-size: cover;
+    font-size:25px;
+    text-align: center;
+
+}
+#field {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    color: blue;
+}
+
+.card {
+    border: 1px solid ;
+    box-sizing: border-box;
+    font-size: 0;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(0.6turn, #bb5253, #a1a051, #757bbb);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: font-size .3s;
+}
+.card.visible {
+    font-size: 32px;
+    cursor: default;
+}
+.card.active {
+    background: chocolate;
+}
+

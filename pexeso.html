@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pexeso</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+<h1>Pexeso</h1>
+<div id="field"></div>
+<script>let cards = ["🍆", "🍩", "🍑", "💦", "😈", "🤯", "🍄", "🥱"];
+cards.push(...cards); // Zdvojnásobí pole
+cards = cards.sort(() => Math.random() - 0.5) // Zamíchá pole
+
+const gameField = document.getElementById('field'); // Uloží element herního pole
+
+for (let i = 0; i < cards.length; i++) { // Projde pole kartiček
+    const newCard = document.createElement("div"); // Vytvoří element
+    newCard.className = "card"; // Vytvořenému elementu přidá třídu
+    newCard.appendChild(document.createTextNode(cards[i])); // Do vytvořeného elementu přidá textový node s textem z pole
+    newCard.addEventListener('click', function (e) { // Přidá poslouchání na kliknutí elementu
+        cardClick(e.target); // Zavolá funkci a pošle jí v parametru element na který bylo kliknuto (e = event, target = element)
+    });
+    gameField.appendChild(newCard); // Přidá vytvořený element (kartu) do elementu herního pole
+}
+
+let firstCard;
+function cardClick(el) {
+    el.classList.add('visible'); // Zobrazí kartu na kterou bylo kliknuto
+
+    if (!firstCard) { // Pokud neexistuje první karta
+        firstCard = el; // Uloží kartu
+    } else { // Pokud existuje první karta
+        const secondCard = el; // Uloží si parametr funkce do proměnné
+        setTimeout(function () {
+            if (firstCard.textContent === secondCard.textContent) {
+                firstCard.classList.add('active'); // Přidá třídu
+                secondCard.classList.add('active'); // Přidá třídu
+            } else {
+                firstCard.classList.remove('visible'); // Odebere třídu
+                secondCard.classList.remove('visible'); // Odebere třídu
+            }
+            firstCard = undefined; // Vynuluje proměnnou pro první kartu
+        }, 1000);
+    }
+}
+</script>
+</body>
+</html>
